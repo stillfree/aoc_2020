@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-import sys
-import time
-import math
-
+import sys, time, math
 fastArray = [ 0 ] * 2021
 
 def readInput():
-    file = open("input", "r")
+    file = 0
+    if( len( sys.argv ) == 2 ):
+        file = open( sys.argv[1], "r")
+    else:
+        file = open("input", "r")
     #file = open("testinput", "r")
     lines = file.readlines()
     return lines
