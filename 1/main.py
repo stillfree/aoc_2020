@@ -49,8 +49,7 @@ def shortenList( liste, value):
 def partTwo( even, odd ):
     sumList = even + odd
     sumList.sort()
-    for i in range( len(sumList) ):
-        chosen = sumList[i]
+    for chosen in sumList:
         for second in shortenList( sumList, 2020 - chosen ):
             left = 2020 - chosen - second
             if( fastArray[left]  == 1 ):
