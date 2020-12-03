@@ -9,9 +9,17 @@ def readInput():
     lines = file.readlines()
     return lines
 
+def partOne( lines ):
+    pass
+
+def partTwo( lines ):
+    pass
+
 def main():
     lines = readInput()
     print(lines)
+    partOne( lines )
+    partTwo( lines )
 
 
 if __name__ == "__main__":
