@@ -14,10 +14,9 @@ class element():
         self._color = color
         self._children = []
         self._parents = []
-        self._gold = False
 
+elementList = {}
 def partOne( lines ):
-    elementList = {}
     for line in lines:
         color = " ".join( line.split(" ")[:2])
         elementList[ color ] = element( color )
@@ -53,20 +52,31 @@ def partOne( lines ):
         current = 0
         if( len( parents ) ):
             current = parents.pop()
-
     print( "PartOne: ", len( overallParents ) )
 
-def partOneV2( lines ):
-    pass
+def recursive( element ):
+    if( len( element._children ) <= 0 ):
+        return 1
+    summe = 0
+    for child in element._children:
+        number = int( child[1] )
+        result = recursive( child[0] )
+        if( result == 1 ):
+            pass
+            #print( child[0]._color, number )
+        if( child[1] == "0" ):
+            print( "ZERO" )
+        summe += number
+        summe += number * result
+    return summe
 
 def partTwo( lines ):
-    pass
+    print( "PartTwo: ", recursive( elementList[ "shiny gold" ] ) )
 
 def main():
     lines = readInput()
     partOne( lines )
     partTwo( lines )
-
 
 if __name__ == "__main__":
     main()
