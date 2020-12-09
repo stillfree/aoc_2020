@@ -17,6 +17,7 @@ class element():
 
 elementList = {}
 def partOne( lines ):
+    global elementList
     for line in lines:
         color = " ".join( line.split(" ")[:2])
         elementList[ color ] = element( color )
@@ -56,22 +57,23 @@ def partOne( lines ):
 
 def recursive( element ):
     if( len( element._children ) <= 0 ):
-        return 1
+        return [ 1, False ]
     summe = 0
     for child in element._children:
         number = int( child[1] )
         result = recursive( child[0] )
-        if( result == 1 ):
-            pass
-            #print( child[0]._color, number )
-        if( child[1] == "0" ):
-            print( "ZERO" )
-        summe += number
-        summe += number * result
-    return summe
+        save = result
+        temp = number
+        if( result[1] == False ):
+            summe += number
+        else:
+            summe += number
+            summe += ( number * result[0])
+    return [ summe, True ]
 
 def partTwo( lines ):
-    print( "PartTwo: ", recursive( elementList[ "shiny gold" ] ) )
+    global elementList
+    print( "PartTwo: ", recursive( elementList[ "shiny gold" ] )[0] )
 
 def main():
     lines = readInput()
