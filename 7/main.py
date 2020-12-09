@@ -62,8 +62,6 @@ def recursive( element ):
     for child in element._children:
         number = int( child[1] )
         result = recursive( child[0] )
-        save = result
-        temp = number
         if( result[1] == False ):
             summe += number
         else:
