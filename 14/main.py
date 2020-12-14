@@ -30,7 +30,7 @@ def partOne( lines ):
 
 
 def partTwo( lines ):
-    memory =  [0]* 2300000000
+    memory = {}
     numX = 0
     for line in lines:
         if( "mask" in line ):
@@ -40,7 +40,7 @@ def partTwo( lines ):
             indexX = [i for i, ltr in enumerate(line) if ltr == "X"]
             indexX.sort( reverse=True)
             ormask = int( re.sub("[^0-9]", "", line.replace( "X", "0")), 2)
-            XMASK = int( re.sub("[^0-9]", "", line.replace("0", "1").replace( "X", "0")))
+            XMASK = int( re.sub("[^0-9]", "", line.replace("0", "1").replace( "X", "0")),2)
         else:
             numbers =  list( map( lambda x: re.sub("[^0-9]", "", x ), line.split(" ")))
             slot = int(numbers[0])
@@ -51,7 +51,7 @@ def partTwo( lines ):
                 for shift in range( numX ):
                     value = (( (i >> shift) & 1) << maskLen - indexX[shift] )
                     ind = ind | value
-                memory[ind] = number
+                memory[str(ind)] = number
 
     summe = 0
     for mem in memory:
