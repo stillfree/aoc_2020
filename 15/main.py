@@ -10,14 +10,41 @@ def readInput():
     return lines
 
 def partOne( lines ):
-    pass
+    limit = 30000000
+    for line in lines:
+        past = {}
+        startNumbers =  line.strip().split(",")
+        counter = len(startNumbers)
+        lastSpoken = 0
+        for i in range (len( startNumbers )):
+            past[str(startNumbers[i])] = [i]
+            lastSpoken = startNumbers[i]
+        while( counter < limit ):
+            lastNumber = past[str(lastSpoken)]
+            spoken=len(lastNumber)
+            if( spoken == 1 ):
+                if "0" in past:
+                    past["0"] = [max(past["0"])] + [counter ]
+                else:
+                    past["0"] = [counter ]
+                lastSpoken = 0
+            else:
+                number  = lastNumber[len(lastNumber)-1] - lastNumber[len(lastNumber)-2]
+                lastSpoken = number
+                if str(number) in past:
+                    past[str(number)] = [max(past[str(number)])] + [ counter ]
+                else:
+                    past[str(number)] = [ counter ]
+            counter += 1
+            #print(counter)
+            #print(past["0"])
+        print( lastSpoken )
 
 def partTwo( lines ):
     pass
 
 def main():
     lines = readInput()
-    print(lines)
     partOne( lines )
     partTwo( lines )
 
