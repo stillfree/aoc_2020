@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys, time, math
+import numpy as np
 
 def readInput():
     if( len( sys.argv ) == 2 ):
@@ -61,12 +62,17 @@ def inLimit( vector, xLimit , yLimit ):
         return True
     return False
 
+directions = list( map( lambda x: np.array(x), [ [0,1], [1,1], [1,0], [1,-1], [-1,1], [-1,0], [0,-1], [-1,-1] ]))
 def directional( grid,  row, column  ):
     startVector = [row, column ]
     counter = 0
-    for vector in [ [0,1], [1,1], [1,0], [1,-1], [-1,1], [-1,0], [0,-1], [-1,-1] ]:
+    for vector in directions:
         multiplier = 1
-        result = [startVector[0] + vector[0]* multiplier, vector[1]*multiplier + startVector[1]]
+        #result = [startVector[0] + vector[0]* multiplier, vector[1]*multiplier + startVector[1]]
+        #print( startVector, multiplier, vector, result[0], result[1])
+        #vector = np.array(vector)
+        result = startVector + np.dot( multiplier, vector )
+        #print( startVector, multiplier, vector, result[0], result[1])
         xLimit = len(grid )
         yLimit = len(grid[0])
         while( inLimit( result, xLimit, yLimit ) ):

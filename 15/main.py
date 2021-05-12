@@ -9,8 +9,7 @@ def readInput():
     lines = file.readlines()
     return lines
 
-def partOne( lines ):
-    limit = 30000000
+def partOne( lines, limit):
     for line in lines:
         past = {}
         startNumbers =  line.strip().split(",")
@@ -40,13 +39,13 @@ def partOne( lines ):
             #print(past["0"])
         print( lastSpoken )
 
-def partTwo( lines ):
-    pass
+def partTwo( lines, limit):
+    partOne( lines, limit )
 
 def main():
     lines = readInput()
-    partOne( lines )
-    partTwo( lines )
+    partOne( lines, 2020 )
+    partTwo( lines, 30000000 )
 
 
 if __name__ == "__main__":
